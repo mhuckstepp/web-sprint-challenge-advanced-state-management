@@ -1,11 +1,11 @@
 import axios from "axios";
-
 export const FETCH_START = "FETCH_START";
 export const FETCH_SUCCESS = "FETCH_SUCCESS";
 export const FETCH_FAIL = "FETCH_FAIL";
 export const ADD_SMURF = "ADD_SMURF";
 export const SET_ERROR = "SET_ERROR";
 
+// API call to fetch smurfs, called on cDM in APP
 export const fetchSmurfs = () => {
   console.log("fetchSmurf reducer");
   return (dispatch) => {
@@ -23,10 +23,12 @@ export const fetchSmurfs = () => {
   };
 };
 
+// used in 'AddForm component
 export const addSmurf = (smurf) => {
   return { type: ADD_SMURF, payload: smurf };
 };
 
+// used in 'AddForm component
 export const setError = (error) => {
   return { type: SET_ERROR, payload: error };
 };

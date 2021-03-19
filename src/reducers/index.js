@@ -6,6 +6,7 @@ import {
   SET_ERROR,
 } from "../actions";
 
+// Added initial sate smurfs for testing
 export const initialState = {
   smurfs: [
     {

@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+//   redux hooks used
 import { addSmurf, setError } from "../actions";
 
 const AddForm = (props) => {
+  //   redux hooks used
   const errMessage = useSelector((state) => state.err);
   const dispatch = useDispatch();
   const [state, setState] = useState({
@@ -25,6 +27,7 @@ const AddForm = (props) => {
       dispatch(setError("Name, position and nickname fields are required."));
     } else {
       dispatch(addSmurf(state));
+      //   reset local form state and redux error state
       dispatch(setError(""));
       setState({
         name: "",
@@ -35,6 +38,7 @@ const AddForm = (props) => {
     }
   };
 
+  //   set local error message to redux store error message
   const errorMessage = errMessage;
 
   return (

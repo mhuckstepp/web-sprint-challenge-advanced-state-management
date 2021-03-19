@@ -10,7 +10,6 @@ import { connect } from "react-redux";
 
 class App extends Component {
   componentDidMount() {
-    console.log("did mount");
     this.props.fetchSmurfs();
   }
 
