@@ -1,10 +1,46 @@
+import { FETCH_START, FETCH_SUCCESS, FETCH_FAIL } from "../actions";
 
 export const initialState = {
-}
+  smurfs: [
+    {
+      id: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9",
+      name: "Poppa Smurf",
+      position: "Village Leader",
+      nickname: "Pops",
+      description:
+        "Papa is the practical village leader and the father figure of 100 or so young Smurfs. He is easily identified by his red Smurf hat, pants, and a shortly-trimmed white beard and moustache.",
+    },
+    {
+      id: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ8",
+      name: "Kid Smurf",
+      position: " Non",
+      nickname: "Popser",
+      description:
+        "Kids is the practical village leader and the father figure of 100 or so young Smurfs. He is easily identified by his red Smurf hat, pants, and a shortly-trimmed white beard and moustache.",
+    },
+  ],
+  isFetching: false,
+  err: "",
+};
 
-const reducer = ()=>{
-}
-
+const reducer = (state = initialState, action) => {
+  // The reducer normally looks at the action type field to decide what happens
+  switch (action.type) {
+    case FETCH_START:
+      console.log("fetch start reducer");
+      return {
+        ...state,
+        isFetching: true,
+        smurfs: [...state.smurfs, action.payload],
+      };
+    case FETCH_SUCCESS:
+      return { ...state, isFetching: false, err: "" };
+    case FETCH_FAIL:
+      return { ...state, isFetching: false, err: action.payload };
+    default:
+      return state;
+  }
+};
 export default reducer;
 
 //Task List:
