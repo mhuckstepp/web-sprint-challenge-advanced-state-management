@@ -3,6 +3,8 @@ import axios from "axios";
 export const FETCH_START = "FETCH_START";
 export const FETCH_SUCCESS = "FETCH_SUCCESS";
 export const FETCH_FAIL = "FETCH_FAIL";
+export const ADD_SMURF = "ADD_SMURF";
+export const SET_ERROR = "SET_ERROR";
 
 export const fetchSmurfs = () => {
   console.log("fetchSmurf reducer");
@@ -11,9 +13,22 @@ export const fetchSmurfs = () => {
     return axios.get(`http://localhost:3333/smurfs`).then(
       (res) => dispatch({ type: FETCH_SUCCESS, payload: res.data }),
       //   (res) => console.log(res.data),
-      (err) => dispatch({ type: FETCH_FAIL, payload: err })
+      (err) =>
+        dispatch({
+          type: FETCH_FAIL,
+          payload: "Network Error while fetching smurfs",
+        })
+      //   (err) => console.log(err)
     );
   };
+};
+
+export const addSmurf = (smurf) => {
+  return { type: ADD_SMURF, payload: smurf };
+};
+
+export const setError = (error) => {
+  return { type: SET_ERROR, payload: error };
 };
 
 //Task List:

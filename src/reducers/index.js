@@ -1,9 +1,15 @@
-import { FETCH_START, FETCH_SUCCESS, FETCH_FAIL } from "../actions";
+import {
+  FETCH_START,
+  FETCH_SUCCESS,
+  FETCH_FAIL,
+  ADD_SMURF,
+  SET_ERROR,
+} from "../actions";
 
 export const initialState = {
   smurfs: [
     {
-      id: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9",
+      id: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ2",
       name: "Poppa Smurf",
       position: "Village Leader",
       nickname: "Pops",
@@ -31,12 +37,21 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         isFetching: true,
-        smurfs: [...state.smurfs, action.payload],
       };
     case FETCH_SUCCESS:
-      return { ...state, isFetching: false, err: "" };
+      console.log();
+      return {
+        ...state,
+        isFetching: false,
+        err: "",
+        smurfs: [...state.smurfs, ...action.payload],
+      };
     case FETCH_FAIL:
       return { ...state, isFetching: false, err: action.payload };
+    case ADD_SMURF:
+      return { ...state, smurfs: [...state.smurfs, action.payload] };
+    case SET_ERROR:
+      return { ...state, err: action.payload };
     default:
       return state;
   }
